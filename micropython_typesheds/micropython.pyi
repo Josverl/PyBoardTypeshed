@@ -14,10 +14,11 @@ __copyright__ = "Howard C Lovatt, 2020 onwards."
 __license__ = "MIT https://opensource.org/licenses/MIT (as used by MicroPython)."
 __version__ = "7.5.3"  # Version set by https://github.com/hlovatt/tag2ver
 
-from typing import TypeVar, overload, Callable, Any, Final
+from typing import TypeVar, overload, Callable, Any,Tuple
 
-_T: Final = TypeVar("_T")
-_F: Final = TypeVar("_F", bound=Callable[..., Any])
+_T = TypeVar("_T")
+Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)  # constant
+_F = TypeVar("_F", bound=Callable[..., Any])
 
 def native(func: _F) -> _F:
     """
@@ -35,7 +36,7 @@ def viper(func: _F) -> _F:
    https://docs.micropython.org/en/latest/reference/speed_python.html#the-viper-code-emitter.
    """
 
-def const(expr: _T, /) -> _T:
+def const(expr: Const_T, /) -> Const_T:
     """
    Used to declare that the expression is a constant so that the compile can
    optimise it.  The use of this function should be as follows::

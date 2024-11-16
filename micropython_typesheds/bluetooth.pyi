@@ -26,6 +26,14 @@ from typing import overload, Any, Callable, Final
 
 from uio import AnyReadableBuf, AnyWritableBuf
 
+from typing_extensions import TypeAlias
+
+_Flag: TypeAlias = int
+_Descriptor: TypeAlias = tuple["UUID", _Flag]
+_Characteristic: TypeAlias = tuple["UUID", _Flag] | tuple["UUID", _Flag, tuple[_Descriptor, ...]]
+_Service: TypeAlias = tuple["UUID", tuple[_Characteristic, ...]]
+
+
 # noinspection SpellCheckingInspection
 class BLE:
     """

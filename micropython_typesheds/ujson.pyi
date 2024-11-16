@@ -24,7 +24,7 @@ from typing import Any, AnyStr
 from uio import IOBase
 
 def dump(
-    obj: Any, stream: IOBase[str, Any], separators: tuple[str, str] | None = None, /
+    obj: Any, stream: IOBase, separators: tuple[str, str] | None = None, /
 ) -> None:
     """
    Serialise *obj* to a JSON string, writing it to the given *stream*.
@@ -41,7 +41,7 @@ def dumps(obj: Any, separators: tuple[str, str] | None = None) -> str:
    The arguments have the same meaning as in `dump`.
    """
 
-def load(stream: IOBase[str, Any]) -> Any:
+def load(stream: IOBase) -> Any:
     """
    Parse the given *stream*, interpreting it as a JSON string and
    deserialising the data to a Python object.  The resulting object is

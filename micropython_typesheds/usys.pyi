@@ -50,7 +50,8 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
       functionality to the :mod:`atexit` module in CPython.
    """
 
-def print_exception(exc: BaseException, file: IOBase[str] = "stdout", /) -> None:
+
+def print_exception(exc: BaseException, file: IOBase = stdout, /) -> None: 
     """
    Print exception with a traceback to a file-like object *file* (or
    `sys.stdout` by default).
@@ -159,17 +160,17 @@ The platform that MicroPython is running on. For OS/RTOS ports, this is
    Python implementation), use `sys.implementation` instead.
 """
 
-stderr: Final[IOBase[str]] = ...
+stderr: Final[IOBase] = ... # IOBase[str]
 """
 Standard error `stream`.
 """
 
-stdin: Final[IOBase[str]] = ...
+stdin: Final[IOBase] = ... 
 """
 Standard input `stream`.
 """
 
-stdout: Final[IOBase[str]] = ...
+stdout: Final[IOBase] = ... 
 """
 Standard output `stream`.
 """

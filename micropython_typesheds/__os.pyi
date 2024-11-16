@@ -21,13 +21,10 @@ __license__ = "MIT https://opensource.org/licenses/MIT (as used by MicroPython).
 __version__ = "7.5.3"  # Version set by https://github.com/hlovatt/tag2ver
 
 from abc import abstractmethod
-from typing import Final, Literal, Protocol, TypeVar, overload, runtime_checkable, TypeAlias
+from typing import Final, TypeVar, runtime_checkable, Protocol, overload, Literal
 
 from uio import IOBase
 
-if False:
-    # moved to vfs module in 1.24.0
-    from vfs import AbstractBlockDev
 _StrOrBytesT = TypeVar("_StrOrBytesT", str, bytes)
 
 class _PathLike(Protocol[_StrOrBytesT]):
@@ -35,8 +32,8 @@ class _PathLike(Protocol[_StrOrBytesT]):
     def __fspath__(self) -> _StrOrBytesT:
         """Return the file system path representation of the object, preferably as a `str`."""
 
-_AnyPath: TypeAlias = str | bytes | _PathLike[str] | _PathLike[bytes]
-_FdOrAnyPath: TypeAlias = int | _AnyPath
+_AnyPath: Final = str | bytes | _PathLike[str] | _PathLike[bytes]
+_FdOrAnyPath: Final = int | _AnyPath
 
 def uname() -> tuple[str, str, str, str, str]:
     """

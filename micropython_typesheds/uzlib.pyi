@@ -33,12 +33,12 @@ def decompress(data: bytes, wbits: int = 0, bufsize: int = 0, /) -> bytes:
    CPython and is ignored.
    """
 
-class DecompIO(IOBase[bytes]):
+class DecompIO(IOBase):
     """
    Steam wrapper that decompresses a given stream containing zlib compressed data.
    """
 
-    def __init__(self, stream: IOBase[bytes], wbits: int = 0, /):
+    def __init__(self, stream: IOBase, wbits: int = 0, /):
         """
       Create a `stream` wrapper which allows transparent decompression of
       compressed data in another *stream*. This allows to process compressed

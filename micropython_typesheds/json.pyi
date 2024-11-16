@@ -24,35 +24,38 @@ from typing import Any, AnyStr
 from uio import IOBase
 
 def dump(
-    obj: Any, stream: IOBase[str, Any], separators: tuple[str, str] | None = None, /
+    obj: Any,
+    stream: IOBase,  # IOBase[str, Any]
+    separators: tuple[str, str] | None = None,
+    /,
 ) -> None:
     """
-   Serialise *obj* to a JSON string, writing it to the given *stream*.
-   
-   If specified, separators should be an ``(item_separator, key_separator)``
-   tuple. The default is ``(', ', ': ')``. To get the most compact JSON
-   representation, you should specify ``(',', ':')`` to eliminate whitespace.
-   """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
 
 def dumps(obj: Any, separators: tuple[str, str] | None = None) -> str:
     """
-   Return *obj* represented as a JSON string.
-   
-   The arguments have the same meaning as in `dump`.
-   """
+    Return *obj* represented as a JSON string.
 
-def load(stream: IOBase[str, Any]) -> Any:
+    The arguments have the same meaning as in `dump`.
     """
-   Parse the given *stream*, interpreting it as a JSON string and
-   deserialising the data to a Python object.  The resulting object is
-   returned.
-   
-   Parsing continues until end-of-file is encountered.
-   A :exc:`ValueError` is raised if the data in *stream* is not correctly formed.
-   """
+
+def load(stream: IOBase) -> Any:  # IOBase[str, Any]
+    """
+    Parse the given *stream*, interpreting it as a JSON string and
+    deserialising the data to a Python object.  The resulting object is
+    returned.
+
+    Parsing continues until end-of-file is encountered.
+    A :exc:`ValueError` is raised if the data in *stream* is not correctly formed.
+    """
 
 def loads(str: AnyStr) -> Any:
     """
-   Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if the
-   string is not correctly formed.
-   """
+    Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if the
+    string is not correctly formed.
+    """
